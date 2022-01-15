@@ -2,8 +2,10 @@
 <?php  
   $user = new User;
   $connection = new mysqli("localhost","root","","test");
-  $query = "SELECT * FROM division";
+  $Div_ID = isset($_GET['GetId']) ? $_GET['GetId'] : '';
+  $query = "SELECT * FROM division where Div_Id='".$Div_ID."'";
   $result = mysqli_query($connection, $query);
+  
    while($row=mysqli_fetch_assoc($result))
    {
    $DivID = $row['Div_Id'];
@@ -148,7 +150,7 @@
 
                                         </div>
    
-                                        
+                                       
                          
                                     
                                     <!-- <button type="submit" class="btn btn-primary mt-4">Submit</button> -->
@@ -158,7 +160,7 @@
                         </div>
                     </div>
                 </main>
-                
+               
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -166,7 +168,7 @@ $(document).ready(function() {
         var DivID = $('#Div_ID').val();            
 		var DivName = $('#DivName').val();
 		var DivStatus = $('#DivStatus').val();
-         console.log(DivID );
+         console.log(DivName);
     
 
 		if(DivName!="" && DivStatus!="" ){
@@ -178,7 +180,7 @@ $(document).ready(function() {
          
                     DivID: DivID,
                     DivName: DivName,
-                    DivStatus: DDivStatus,
+                    DivStatus: DivStatus,
 
           
 

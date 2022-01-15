@@ -2,7 +2,7 @@
 $conn =new mysqli('localhost','root','','test');
 
 
-$Dep_ID = $_POST['Department'];
+$Dep_ID = $_POST['DepID'];
   
 
 $query =  "DELETE FROM department WHERE Dep_Id='".$Dep_ID."' "; 
