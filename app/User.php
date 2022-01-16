@@ -133,7 +133,7 @@ return false;
 
 }
 
-public function DepartmentUpdate( $Dep_ID, $DepName,  $DivName)
+public function DepartmentUpdate( $Dep_ID, $Dep_Name,  $Div_ID)
 
 { //echo "Here";
 
@@ -161,7 +161,7 @@ $connection = new mysqli("localhost","root","","test");
 
 //$sql1 = "UPDATE division SET Div_Name='$Div_name' WHERE Div_Id=$Div_ID";
 
-$sql1 = "UPDATE `department` SET `Dep_Name`='$DepName',`Div_Name`='$DivName' WHERE Dep_Id = $Dep_ID";
+$sql1 = "UPDATE `department` SET `Dep_Name`='$Dep_Name',`Div_Id`='$Div_ID' WHERE Dep_Id = $Dep_ID";
 
 //$sql1 = "INSERT INTO division (Div_Name, status)VALUES ('$Div_name', '$Div_ID')";
 
@@ -180,7 +180,7 @@ return false;
 }
 
 
-		public function Department($DepName, $DivName )
+		public function Department($DepName, $DivId )
 		{	//echo "Here";
 
 			$connection = new mysqli("localhost","root","","test");
@@ -193,7 +193,7 @@ return false;
 			// echo " id is ";
 			 //echo $id ;
 			//$id = $id + 1 ;
-			$sql1 = "INSERT INTO department (Dep_Name,Div_Name)VALUES ('$DepName', '$DivName')";
+			$sql1 = "INSERT INTO department (Dep_Name,Div_Id)VALUES ('$DepName', '$DivId')";
 			$data1 =  mysqli_query($connection, $sql1);
 		    
 	

@@ -5,7 +5,7 @@
   $connection = new mysqli("localhost","root","","test");
   $query = "SELECT * FROM department";
   $result = mysqli_query($connection, $query);
-
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +81,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Division
                             </a>
-                            <a class="nav-link" href="./AllDivision.php">
+                            <a class="nav-link" href="./AllDivisions.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
                                 All Divisions
                             </a>
@@ -125,6 +125,7 @@
                             <tr>
                                 <th scope="col">Department ID</th>
                                 <th scope="col">Department Name</th>
+                                <th scope="col">Division ID</th>
                                 <th scope="col">Division Name</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
@@ -137,18 +138,20 @@
                                 {
                                     $DepID = $row['Dep_Id'];
                                     $DepName= $row['Dep_Name']; 
-                                    $DivName= $row['Div_Name']; 
-                                    
-                         
+                                    $DivId= $row['Div_Id']; 
+                                    $query1="SELECT Div_Name FROM division where Div_Id=$DivId";
+                                    $result1 = mysqli_query($connection,$query1);    
+                                    $row1=mysqli_fetch_assoc($result1);
+                                    $DivName= $row1['Div_Name']; 
                             
                             ?>
 
                                             <tr ID="<?php echo $DepID; ?>">
                                                 <td><?php echo $DepID?></td>
                                                 <td><?php echo  $DepName ?></td>
+                                                <td><?php echo $DivId ?></td>
                                                 <td><?php echo $DivName ?></td>
-
-                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="Department.php?GetId=<?php echo $DepID?>"class= "text-light" >Edit</a></td></button>
+                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="DepartmentUpdate.php?GetId=<?php echo $DepID?>"class= "text-light" >Edit</a></td></button>
                                                 <td><button type="submit" class="btn btn-danger remove"> Delete</button></td>
                                             </tr>  
                                                             <?php

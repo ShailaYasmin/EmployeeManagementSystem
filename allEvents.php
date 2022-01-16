@@ -81,7 +81,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Division
                             </a>
-                            <a class="nav-link" href="./AllDivision.php">
+                            <a class="nav-link" href="./AllDivisions.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
                                 All Divisions
                             </a>

@@ -168,18 +168,18 @@
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <div class="form-group">
     <!-- <label>Product ID</label> -->
-    <input type="hidden" class="form-control" id="Div_ID" placeholder="Enter Division Name" name="Div_ID"value="<?php echo  $DivID; ?>" >
+    <input type="hidden" class="form-control" id="Div_ID" placeholder="Enter Division Name" name="Div_ID"value=" " >
 </div>
 
 
                                         <div class="col">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Division Name</b></label>
-                                            <input type="text" class="form-control"id=DivName name="Division"value="<?php echo $DivName;?>">
+                                            <input type="text" class="form-control"id=DivName name="Division"value="">
                                         </div>
                                         <label for="exampleInputEmail1" class="form-label"><b>Status</b></label>
                                         
-                                            <select name="DivStatus" class ="form-control"id=DivStatus value="<?php echo $DivStatus;?>">
+                                            <select name="DivStatus" class ="form-control"id=DivStatus value=" ">
                                             <option Value="select">----Choose One-----</option>
                                                 <option Value="Active">Active</option>
                                                 <option Value="Inactive">Inactive</option>

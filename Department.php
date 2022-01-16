@@ -4,8 +4,8 @@
   $connection = new mysqli("localhost","root","","test");
   $sql = "SELECT * FROM department";
   $data = mysqli_query($connection, $sql);
-  
- 
+  $sql1="SELECT Div_Id,Div_Name FROM division";
+  $data1= mysqli_query($connection, $sql1);
    
   ?>
 
@@ -177,12 +177,17 @@
                                         <label for="exampleInputEmail1" class="form-label"><b>Division Name</b></label>
                                         
                                             <select name="Div_Name" class ="form-control">
-                                            <option Value="select">----Choose One-----</option>
-                                                <option Value="ICT">ICT</option>
-                                                <option Value="Audit">Audit</option>
-                                                <option Value="HR">HR</option>
-                                                <option Value="HR">Accounts</option>
-                                                <option Value="HR">Finance</option>
+                                            <option Value="select">----Choose One-----</option>    
+                                             <?php
+                                                while($row=mysqli_fetch_assoc($data1))
+                                                {
+                                                    
+                                                    $DivName= $row['Div_Name']; 
+                                                    $Div_ID=$row['Div_Id'];
+                                             ?>   
+                                                <option Value="<?php echo  $Div_ID ?>"><?php echo $DivName ?></option>
+                                                
+                                                 <?php } ?>       
                                         </div>
 
 

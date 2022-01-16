@@ -24,8 +24,6 @@
           
                                             // Get value 
                                             $Div_id =$_POST['Div_ID'];
-                                            //$Div_id = (int) $Div_id1;
-                                            echo $Div_id;
                                             $Div_name = $_POST['Division'];
                                             $DivStatus = $_POST ['DivStatus'];
                                         
@@ -188,7 +186,7 @@
                                         
                                             <select name="DivStatus" class ="form-control"id=DivStatus value="Division Status">
                                             <option Value="select"><?php echo $DivStatus ?></option>
-                                                <!-- <option Value="Active">Active</option> -->
+                                                <option Value="Active">Active</option>
                                                 <option Value="Inactive">Inactive</option>
                                         </div>
 
