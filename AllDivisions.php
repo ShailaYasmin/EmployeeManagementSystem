@@ -150,7 +150,7 @@
                                                 <td><?php echo $DivName ?></td>
                                                 <td><?php echo $DivStatus ?></td>
 
-                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="DivisionUpdate.php?GetId=<?php echo $DivID ?>"class= "text-light" >Edit</a></td></button>
+                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="DivisionUpdate.php?GetId=<?php echo $DivID ?>GetName=<?php echo $DivName ?>"class= "text-light" >Edit</a></td></button>
                                                 <td><button type="submit" class="btn btn-danger remove"> Delete</button></td>
                                             </tr>  
                                                             <?php

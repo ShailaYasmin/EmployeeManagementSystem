@@ -19,7 +19,7 @@
 		 if( isset($_POST['user_submit']) ){
 
 			// Get value 
-			$name = $_POST['name'];
+			// $name = $_POST['name'];
 			$email = $_POST['email'];
   
 			// Password Hash
@@ -38,7 +38,7 @@
 			  $pass_check = true;
 			}
 
-			if( empty($name) || empty($email) || empty($pass) )
+			if( empty($email) || empty($pass) )
 		 	{
 				$mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
 			}elseif($pass_check == false){
@@ -48,7 +48,7 @@
 			}elseif( $user_check == false ){
 				$mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>Email already exixts1 !</p>";
 			}else {
-				$data = $user -> userRegistraion($name, $email, $pass);
+				$data = $user -> userRegistraion( $email, $pass);
 				if(  $data  == true ){
 				  $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Registration successfull </p>";
 				}
@@ -61,7 +61,7 @@
 		 if( isset($_POST['user_login']) ){
 
 			// Get value 
-			$name = $_POST['name'];
+			// $name = $_POST['name'];
 			$email = $_POST['email'];
 			$pass = $_POST['password'];
 			
@@ -74,9 +74,9 @@
 				$mess = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>Invalid Email !</p>";
 			}else {
   
-			   $mess = $user -> userLoginSystem($name,$email, $pass);
+			   $mess = $user -> userLoginSystem($email, $pass);
 			   session_start();
-			   $_SESSION["name"] = $name;
+			//    $_SESSION["name"] = $name;
               $_SESSION["email"] = $email;
 			
 			   header("Location: allUser.php");
@@ -122,7 +122,7 @@
 					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div> -->
-				<input id="uname" name="name" type="text"  placeholder="Enter Name">
+				<!-- <input id="uname" name="name" type="text"  placeholder="Enter Name"> -->
 				<input id="uname" name="email" type="text"  placeholder="Enter Email">
 				<input id="password" name="password" type="password"  placeholder="Enter Password"><br>
 				<!-- <button>Sign In</button> -->

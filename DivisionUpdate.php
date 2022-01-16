@@ -4,19 +4,34 @@
   $connection = new mysqli("localhost","root","","test");
   $Div_ID = isset($_GET['GetId']) ? $_GET['GetId'] : '';
   $query = "SELECT * FROM division where Div_Id='".$Div_ID."'";
-  $result = mysqli_query($connection, $query);
-  
-   while($row=mysqli_fetch_assoc($result))
-   {
-   $DivID = $row['Div_Id'];
-   $DivName = $row['Div_Name'];
-   $DivStatus = $row['status'];
-   }
- ?>
+  $data = mysqli_fetch_array($connection,$query);
    
+   
+   if(isset($_POST['update'])) // when click on Update button
+{
+    $Div_ID = $_POST['$DivID'];
+    $Div_name = $_POST['$DivName'];
+	$DivStatus = $_POST['$DivStatus'];
+   
+	
+    if( empty($Div_name ) || empty($DivStatus))
+            
+		 	 {
+				$mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
+              }
+            else {
+				$data = $user ->DivisionUpdate($Div_name, $DivStatus);
+				if(  $data  == true ){
+				  $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
+				}
+                header("location:AllDivisions.php");
+		   }
   
+  
+  
+		 }
 
-           
+?>       
             
 <!DOCTYPE html>
 <html lang="en">
@@ -130,15 +145,17 @@
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <div class="form-group">
     <!-- <label>Product ID</label> -->
-    <input type="hidden" class="form-control" id="Div_ID" placeholder="Enter Division Name" name="Div_ID"value="<?php echo  $DivID; ?>" >
+    <input type="hidden" class="form-control" id="DivID" placeholder="Enter Division Name" name="DivID"value="<?php echo  $DivID; ?>" >
 </div>
 
 
-                                        <div class="col">
-                                        <div class="col">
+                                            <div class="form-group">
+                                        
                                             <label for="exampleInputEmail1" class="form-label"><b>Division Name</b></label>
-                                            <input type="text" class="form-control"id=DivName name="Division"value="<?php echo $DivName;?>">
+                                            <input type="text" class="form-control"id=DivName name="DivName"value="<?php echo $DivName; ?>">
+                                            
                                         </div>
+                                       
                                         <label for="exampleInputEmail1" class="form-label"><b>Status</b></label>
                                         
                                             <select name="DivStatus" class ="form-control"id=DivStatus value="<?php echo $DivStatus;?>">
@@ -161,7 +178,7 @@
                     </div>
                 </main>
                
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 $(document).ready(function() {
 	$('#update').on('click', function() {
@@ -221,9 +238,9 @@ $(document).ready(function() {
 	});
 });
 
-</script>
+</script> -->
 
-</body>     
+  
   
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -249,5 +266,5 @@ $(document).ready(function() {
         <script src="assets/js/datatables-simple-demo.js"></script>
        
     
-                  
+        </body>               
 </html>

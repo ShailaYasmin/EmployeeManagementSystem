@@ -87,7 +87,29 @@
 			return false;
 			}
 		}
-         
+		public function DivisionUpdate($Div_name, $DivStatus)
+		{	//echo "Here";
+
+			$connection = new mysqli("localhost","root","","test");
+
+			//$sql = "SELECT MAX(ID) FROM events";
+			//$data =  mysqli_query($connection, $sql);
+			
+			//$row = mysqli_fetch_array($data, MYSQLI_ASSOC);
+			//$id = $row['MAX(ID)'];
+			// echo " id is ";
+			 //echo $id ;
+			//$id = $id + 1 ;
+			$sql1= "UPDATE division SET Div_Name='".$Div_name."', status='".$DivStatus."' WHERE Div_Id='".$Div_ID."'"; 
+			$data1 =  mysqli_query($connection, $sql1);
+		    
+	
+			if($data1){
+				return true;
+			}else{
+			return false;
+			}
+		}    
 
 		public function Department($DepName, $DivName )
 		{	//echo "Here";
