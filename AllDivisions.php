@@ -60,7 +60,7 @@
                     <div class="sb-sidenav-menu">
                     <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="./adminDashboard.php">
+                            <a class="nav-link" href="./UserDashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -150,7 +150,7 @@
                                                 <td><?php echo $DivName ?></td>
                                                 <td><?php echo $DivStatus ?></td>
 
-                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="DivisionUpdate.php?GetId=<?php echo $DivID ?>GetName=<?php echo $DivName ?>"class= "text-light" >Edit</a></td></button>
+                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="DivisionUpdate.php?GetId=<?php echo $DivID ?>&GetName=<?php echo $DivName ?>"class= "text-light" >Edit</a></td></button>
                                                 <td><button type="submit" class="btn btn-danger remove"> Delete</button></td>
                                             </tr>  
                                                             <?php

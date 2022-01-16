@@ -48,20 +48,39 @@
                                 Dashboard
                             </a>
                             
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="./allUser.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
                                 All User
                             </a>
+                           
+                            <div class="sb-sidenav-menu-heading">Events</div>
+                            <a class="nav-link" href="./allEvents.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                All Events
+                            </a>
+                            <a class="nav-link" href="./createEvent.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Create Event
+                            </a>
+                            <a class="nav-link" href="./Division.php"?>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Division
+                            </a>
+                            <a class="nav-link" href="./AllDivision.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
+                                All Divisions
+                            </a>
+                            <a class="nav-link" href="./Department.php"?>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Department
+                            </a>
+                            <a class="nav-link" href="./AllDepartments.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
+                                All Departments
+                            </a>
                             
                             <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

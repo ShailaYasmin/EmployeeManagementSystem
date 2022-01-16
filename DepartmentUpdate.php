@@ -1,20 +1,64 @@
-<?php  include_once "app/autoload.php"; ?>
-<?php  
-  $user = new User;
-  $connection = new mysqli("localhost","root","","test");
-  $query = "SELECT * FROM division";
-  $result = mysqli_query($connection, $query);
-   while($row=mysqli_fetch_assoc($result))
-   {
-   $DivID = $row['Div_Id'];
-   $DivName = $row['Div_Name'];
-   $DivStatus = $row['status'];
-   }
- ?>
-   
-  
+<?php  include_once "app/autoload.php"; ?>    
 
-           
+<?php  
+                                $user = new User;
+                                $connection = new mysqli("localhost","root","","test");
+                                $Dep_ID = isset($_GET['GetId']) ? $_GET['GetId'] : '';
+
+
+                                $query = "SELECT * FROM department where Dep_Id='".$Dep_ID."'";
+                                $result = mysqli_query($connection,$query);
+                                //$data = mysqli_fetch_array($connection,$query);
+                                //   $DivName = $data['Div_Name'];
+                                //   $DivStatus = $data['status'];
+
+                                $row=mysqli_fetch_assoc($result);
+                                    
+                                        $DepName = $row['Dep_Name'];
+                                        $DivName = $row['Div_Name'];
+                                    
+
+
+                                
+                                        if( isset($_POST['update']) ){
+          
+                                            // Get value 
+                                            $Dep_ID =$_POST['Dep_ID'];
+                                            //$Div_id = (int) $Div_id1;
+                                            echo $Dep_ID ;
+                                            $DepName = $_POST['Dep_Name'];
+                                            $DivName = $_POST['Div_Name'];
+                                            
+                                        
+                                        
+                                
+                                
+                                            $mess1 = "Test";
+                                
+                                             if( empty(   $DepName) || empty(  $DivName))
+                                            
+                                              {
+                                                $mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
+                                              }
+                                            else {
+                                                $data = $user -> DepartmentUpdate(  $Dep_ID, $DepName,  $DivName);
+                                                //echo $data;
+                                                if(  $data  == true ){
+                                                  $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
+                                                }
+                                                else{
+                                                    //echo "SORRY";
+                                                    echo $data;
+                                                }
+                                                
+                                           }
+                                           header("location:AllDepartments.php");
+                                  
+                                  
+                                  
+                                         }
+
+?> 
             
 <!DOCTYPE html>
 <html lang="en">
@@ -33,47 +77,7 @@
 
 
 
-    <?php
-     
-    // $connection = new mysqli("localhost","root","","test");
-    // $eName = isset($_GET['$eName']) ? $_GET['$eName'] : '';
-    // $Email=isset($_GET['$Email']) ? $_GET['$Email'] : '';
-    // $sql = "SELECT * FROM report ";
-    // $data = mysqli_query($connection, $sql);
-    
-                                                                                                                                                
-
-
-		 if( isset($_POST['create_event']) ){
-          
-			// Get value 
-            
-	        $Div_name = $_POST['Division'];
-            $DivStatus = $_POST ['DivStatus'];
-		
-		
-
-
-            $mess1 = "Test";
-
-			 if( empty(  $Div_name) || empty(  $DivStatus))
-            
-		 	 {
-				$mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
-              }
-            else {
-				$data = $user -> Division( $Div_name, $DivStatus);
-				if(  $data  == true ){
-				  $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
-				}
-                header("location:AllDivisions.php");
-		   }
-  
-  
-  
-		 }
-        
-	?>
+ 
      
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -106,7 +110,7 @@
                     <div class="sb-sidenav-menu">
                     <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="./UserDashboard.php">
+                            <a class="nav-link" href="./adminDashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -155,6 +159,10 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Division</h1>
+
+
+
+                       
                         <ol class="breadcrumb mb-4">
                            
                         </ol>
@@ -167,22 +175,20 @@
                             <div class="card-body">
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <div class="form-group">
-    <!-- <label>Product ID</label> -->
-    <input type="hidden" class="form-control" id="Div_ID" placeholder="Enter Division Name" name="Div_ID"value="<?php echo  $DivID; ?>" >
-</div>
+                                            <!-- <label>Product ID</label> -->
+                                            <input type="hidden" class="form-control" id="Dep_ID" placeholder="Enter Division Name" name="Dep_ID"value="<?php echo  $Dep_ID; ?>" >
+                                        </div>
 
 
                                         <div class="col">
+                                        <div class="col">
+                                            <label for="exampleInputEmail1" class="form-label"><b>Department Name</b></label>
+                                            <input type="text" class="form-control"id=Dep_Name name="Dep_Name"value="<?php echo $Dep_Name ?>">
+                                        </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Division Name</b></label>
-                                            <input type="text" class="form-control"id=DivName name="Division"value="<?php echo $DivName;?>">
+                                            <input type="text" class="form-control"id=Div_Name name="Div_Name"value="<?php echo $Div_Name ?>">
                                         </div>
-                                        <label for="exampleInputEmail1" class="form-label"><b>Status</b></label>
-                                        
-                                            <select name="DivStatus" class ="form-control"id=DivStatus value="<?php echo $DivStatus;?>">
-                                            <option Value="select">----Choose One-----</option>
-                                                <option Value="Active">Active</option>
-                                                <option Value="Inactive">Inactive</option>
                                         </div>
 
 
@@ -192,16 +198,14 @@
                          
                                     
                                     <!-- <button type="submit" class="btn btn-primary mt-4">Submit</button> -->
-                                    <input name="create_event"id="update" class="btn btn-primary mt-4" type="submit"  value="Add Information">
+                                    <input name="update"id="update" class="btn btn-primary mt-4" type="submit"  value="Update">
                                 </form>
                             </div>
                         </div>
                     </div>
+                    
                 </main>
-                
-              
-
-</body>     
+               
   
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -227,5 +231,5 @@
         <script src="assets/js/datatables-simple-demo.js"></script>
        
     
-                  
+        </body>               
 </html>

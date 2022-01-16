@@ -87,29 +87,98 @@
 			return false;
 			}
 		}
-		public function DivisionUpdate($Div_name, $DivStatus)
-		{	//echo "Here";
+		public function DivisionUpdate($Div_ID,$Div_name, $DivStatus)
 
-			$connection = new mysqli("localhost","root","","test");
+{ //echo "Here";
 
-			//$sql = "SELECT MAX(ID) FROM events";
-			//$data =  mysqli_query($connection, $sql);
-			
-			//$row = mysqli_fetch_array($data, MYSQLI_ASSOC);
-			//$id = $row['MAX(ID)'];
-			// echo " id is ";
-			 //echo $id ;
-			//$id = $id + 1 ;
-			$sql1= "UPDATE division SET Div_Name='".$Div_name."', status='".$DivStatus."' WHERE Div_Id='".$Div_ID."'"; 
-			$data1 =  mysqli_query($connection, $sql1);
-		    
-	
-			if($data1){
-				return true;
-			}else{
-			return false;
-			}
-		}    
+
+
+$connection = new mysqli("localhost","root","","test");
+
+
+
+//$sql = "SELECT MAX(ID) FROM events";
+
+//$data = mysqli_query($connection, $sql);
+
+//$row = mysqli_fetch_array($data, MYSQLI_ASSOC);
+
+//$id = $row['MAX(ID)'];
+
+// echo " id is ";
+
+//echo $id ;
+
+//$id = $id + 1 ;
+
+//$sql1= "UPDATE division SET Div_Name='".$Div_name."', status='".$DivStatus."' WHERE Div_Id="$Div_ID;
+
+//$sql1 = "UPDATE division SET Div_Name='$Div_name' WHERE Div_Id=$Div_ID";
+
+$sql1 = "UPDATE `division` SET `Div_Name`='$Div_name',`status`='$DivStatus' WHERE Div_Id = $Div_ID";
+
+//$sql1 = "INSERT INTO division (Div_Name, status)VALUES ('$Div_name', '$Div_ID')";
+
+$data1 = mysqli_query($connection, $sql1);
+
+if($data1){
+
+return true;
+
+}else{
+
+return false;
+
+}
+
+}
+
+public function DepartmentUpdate( $Dep_ID, $DepName,  $DivName)
+
+{ //echo "Here";
+
+
+
+$connection = new mysqli("localhost","root","","test");
+
+
+
+//$sql = "SELECT MAX(ID) FROM events";
+
+//$data = mysqli_query($connection, $sql);
+
+//$row = mysqli_fetch_array($data, MYSQLI_ASSOC);
+
+//$id = $row['MAX(ID)'];
+
+// echo " id is ";
+
+//echo $id ;
+
+//$id = $id + 1 ;
+
+//$sql1= "UPDATE division SET Div_Name='".$Div_name."', status='".$DivStatus."' WHERE Div_Id="$Div_ID;
+
+//$sql1 = "UPDATE division SET Div_Name='$Div_name' WHERE Div_Id=$Div_ID";
+
+$sql1 = "UPDATE `department` SET `Dep_Name`='$DepName',`Div_Name`='$DivName' WHERE Dep_Id = $Dep_ID";
+
+//$sql1 = "INSERT INTO division (Div_Name, status)VALUES ('$Div_name', '$Div_ID')";
+
+$data1 = mysqli_query($connection, $sql1);
+
+if($data1){
+
+return true;
+
+}else{
+
+return false;
+
+}
+
+}
+
 
 		public function Department($DepName, $DivName )
 		{	//echo "Here";
@@ -202,7 +271,7 @@
 						//if( password_verify( $pass , $single_user_data['pass'] ) == true ){
 						if( $pass == $single_user_data['PASSWORD'] ){
 
-								header("location:adminDashboard.php");
+								header("location:UserDashboard.php");
 		
 						}else{
 							header("location:login.php");

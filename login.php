@@ -79,7 +79,7 @@
 			//    $_SESSION["name"] = $name;
               $_SESSION["email"] = $email;
 			
-			   header("Location: allUser.php");
+			   header("Location: UserDashboard.php");
   
 			}
   
