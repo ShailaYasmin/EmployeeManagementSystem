@@ -1,6 +1,62 @@
 <?php  include_once "app/autoload.php"; ?>    
 
+<?php  
+                                $user = new User;
+                                $connection = new mysqli("localhost","root","","test");
+                                $Dep_ID = isset($_GET['GetId']) ? $_GET['GetId'] : '';
+                                
 
+                                $query = "SELECT * FROM department where Dep_Id='".$Dep_ID."'";
+                                $result = mysqli_query($connection,$query);
+                                $sql1="SELECT Div_Id,Div_Name FROM division";
+                                $data1= mysqli_query($connection, $sql1);
+
+                                $row=mysqli_fetch_assoc($result);
+                                    
+                                        $Dep_Name = $row['Dep_Name'];
+                                        $DivId = $row['Div_Id'];
+                                    
+
+
+                                
+                                        if( isset($_POST['update']) ){
+          
+                                            // Get value 
+                                            $Dep_ID =$_POST['Dep_ID'];
+                                            $Dep_Name = $_POST['Dep_Name'];
+                                            $Div_ID = $_POST['Div_ID'];
+                                            
+                                        
+                                        
+                                
+                                
+                                            $mess1 = "Test";
+                                
+                                             if( empty(   $Dep_Name) || empty(  $Div_ID))
+                                            
+                                              {
+                                                $mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
+                                              }
+                                            else {
+                                                $data = $user -> DepartmentUpdate(  $Dep_ID, $Dep_Name, $Div_ID);
+                                                //echo $data;
+                                                if(  $data  == true ){
+                                                  $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
+                                                }
+                                                else{
+                                                    //echo "SORRY";
+                                                    echo $data;
+                                                    
+                                                }
+                                               
+                                  
+                                           }
+                                          
+                                           header("location:AllDepartments.php");
+                                  
+                                        }
+
+?> 
             
 <!DOCTYPE html>
 <html lang="en">
@@ -99,62 +155,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <?php  
-                                $user = new User;
-                                $connection = new mysqli("localhost","root","","test");
-                                $Dep_ID = isset($_GET['GetId']) ? $_GET['GetId'] : '';
-                                
-
-                                $query = "SELECT * FROM department where Dep_Id='".$Dep_ID."'";
-                                $result = mysqli_query($connection,$query);
-                                $sql1="SELECT Div_Id,Div_Name FROM division";
-                                $data1= mysqli_query($connection, $sql1);
-
-                                $row=mysqli_fetch_assoc($result);
-                                    
-                                        $Dep_Name = $row['Dep_Name'];
-                                        $DivId = $row['Div_Id'];
-                                    
-
-
-                                
-                                        if( isset($_POST['update']) ){
-          
-                                            // Get value 
-                                            $Dep_ID =$_POST['Dep_ID'];
-                                            $Dep_Name = $_POST['Dep_Name'];
-                                            $Div_ID = $_POST['Div_ID'];
-                                            
-                                        
-                                        
-                                
-                                
-                                            $mess1 = "Test";
-                                
-                                             if( empty(   $Dep_Name) || empty(  $Div_ID))
-                                            
-                                              {
-                                                $mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
-                                              }
-                                            else {
-                                                $data = $user -> DepartmentUpdate(  $Dep_ID, $Dep_Name, $Div_ID);
-                                                //echo $data;
-                                                if(  $data  == true ){
-                                                  $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
-                                                }
-                                                else{
-                                                    //echo "SORRY";
-                                                    echo $data;
-                                                }
-                                                
-                                           }
-                                           header("location:AllDepartments.php");
-                                  
-                                  
-                                  
-                                         }
-
-?> 
+                  
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Department</h1>
 
