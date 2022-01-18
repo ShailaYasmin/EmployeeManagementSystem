@@ -4,8 +4,10 @@
   $connection = new mysqli("localhost","root","","test");
   $sql = "SELECT * FROM events";
   $data = mysqli_query($connection, $sql);
-  
- 
+  $sql1="SELECT Div_Id,Div_Name FROM division";
+  $data1= mysqli_query($connection, $sql1);
+  $sql2="SELECT Dep_Id,Dep_Name FROM department";
+  $data2= mysqli_query($connection, $sql2);
    
   ?>
 
@@ -208,84 +210,42 @@
                                         <div class="col">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Division</b></label>
-                                            <input type="text" class="form-control" name="Division">
+                                            
                                         </div>
-                                            <!-- <select name="Division" class="form-control" > -->
-                                            <!-- <option Administration Division="Dhaka">----Choose One-----</option>
-                                                <option Administration Division="Dhaka">Administration Division</option>
-                                                <option value="Bhaluka Factory">Bhaluka Factory</option>
-                                                <option value="Business">Business</option>
-                                                <option value="Executive Office">Executive Office</option>
-                                                <option value="Finance & Accounts">Finance & Accounts</option> 
-                                                <option value="MISHD">MISHD</option> 
-                                                <option value="ORS Factory">ORS Factory</option> 
-                                                <option value="Program Division">Program Division</option> 
-                                                <option value="Projects">Projects</option> 
-                                                <option value="FMD">FMD</option> 
-                                                <option value="Health & Hygiene Factory">Health & Hygiene Factory</option> 
-                                                <option value="Operations">Operations</option>
-                                                <option value="ORS Factory">ORS Factory</option> 
-                                                <option value="Pharma">Pharma</option> 
-                                                <option value="Program Division">Program Division</option> 
-                                                <option value="Chairman's Office">Chairman's Office</option> 
-                                                <option value="Corporate Affairs">HR Management</option> 
-                                                <option value="Corporate Affairs">Information and Communication Technology</option> 
-                                                <option value="Corporate Affairs">Engineering Division</option> 
-                                                <option value="Corporate Affairs">Supply Chain Management</option>  -->
-                                                <!-- </select> -->
+                                            <select name="Division" class="form-control" > -->
+                                             <option  Value="select">----Choose One-----</option>
+                                             <?php
+                                                while($row=mysqli_fetch_assoc($data1))
+                                                {
+                                                    
+                                                    $DivName= $row['Div_Name']; 
+                                                    $Div_ID=$row['Div_Id'];
+                                             ?>   
+                                                <option Value="<?php echo  $Div_ID ?>"><?php echo $DivName ?></option>
+                                                
+                                                 <?php } ?>
+                                                 </select> 
 
 
                                         </div>
                                         <div class="col">
                                             
                                             <label for="exampleInputEmail1" class="form-label"><b>Department</b></label>
-                                            <input type="text" class="form-control" name="Department">
-                                        
-                                            <!-- <select name="Department" class="form-control" >
+                                           
+                                            <select name="Department" class="form-control" >
                                                
-                                                <option Administration Division="Dhaka">----Choose One-----</option>
-                                                <option Administration Division="Dhaka">Administration Division</option>
-                                                <option value="Administrative Services">Administrative Services</option>
-                                                <option value="Behavior Communication Change">Behavior Communication Change</option>
-                                                <option value="Business Process Risk Management & Compliance">Business Process Risk Management & Compliance</option>
-                                                <option value="Corporate Affairs">Engineering</option> 
-                                                <option value="Corporate Affairs">Executives Office</option> 
-                                                <option value="Corporate Affairs">Field Operation</option> 
-                                                <option value="Corporate Affairs">Field Operation(MISHD)</option> 
-                                                <option value="Corporate Affairs">Finance & Accounts</option> 
-                                                <option value="Corporate Affairs">Finance & IT Division</option> 
-                                                <option value="Corporate Affairs">Grants, Compliance & Admin</option> 
-                                                <option value="Corporate Affairs">Internal Audit</option>
-                                                <option value="Corporate Affairs">Maintanance</option> 
-                                                <option value="Corporate Affairs">Manufacturing</option> 
-                                                <option value="Corporate Affairs">Marketing</option> 
-                                                <option value="Corporate Affairs">Matarial Management</option> 
-                                                <option value="Corporate Affairs">Marketing</option> 
-                                                <option value="Corporate Affairs">MIS & IT</option> 
-                                                <option value="Corporate Affairs">MISHD</option> 
-                                                <option value="Corporate Affairs">MSN</option> 
-                                                <option value="Corporate Affairs">Procurement</option> 
-                                                <option value="Corporate Affairs">Production</option> 
-                                                <option value="Corporate Affairs">Program Division</option>
-                                                <option value="Corporate Affairs">Projects</option>
-                                                <option value="Corporate Affairs">Quality Assurance</option>
-                                                <option value="Corporate Affairs">Research, Monitoring & Evaluation</option>
-                                                <option value="Corporate Affairs">Sales</option>
-                                                <option value="Corporate Affairs">Training & Service Delivery</option>
-                                                <option value="Corporate Affairs">Material Planning & Logistics (CWH)</option> 
-                                                <option value="Corporate Affairs">MMS</option> 
-                                                <option value="Corporate Affairs">Engineering Department</option> 
-                                                <option value="Corporate Affairs">Budget & Accounts</option> 
-                                                <option value="Corporate Affairs">System Management</option> 
-                                                <option value="Corporate Affairs">Infrastructure</option>
-                                                <option value="Corporate Affairs">Human Resources</option>
-
-
-
-
-
-
-                                                </select> -->
+                                                <option  Value="select">----Choose One-----</option>
+                                                <?php
+                                                while($row=mysqli_fetch_assoc($data2))
+                                                {
+                                                    
+                                                    $DepName= $row['Dep_Name']; 
+                                                    $Dep_ID=$row['Dep_Id'];
+                                             ?>   
+                                                <option Value="<?php echo  $Dep_ID ?>"><?php echo $DepName ?></option>
+                                                
+                                                 <?php } ?>
+                                                </select> 
                                         </div>
                                         
                                     </div>

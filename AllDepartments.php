@@ -115,7 +115,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Employee Info
+                                Department List
                             </div>
                             <div class="card-body">
                             <table class="table caption-top table-bordered">
@@ -127,6 +127,7 @@
                                 <th scope="col">Department Name</th>
                                 <th scope="col">Division ID</th>
                                 <th scope="col">Division Name</th>
+                                <th scope="col">Division Status</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
 
@@ -139,11 +140,11 @@
                                     $DepID = $row['Dep_Id'];
                                     $DepName= $row['Dep_Name']; 
                                     $DivId= $row['Div_Id']; 
-                                    $query1="SELECT Div_Name FROM division where Div_Id=$DivId";
+                                    $query1="SELECT department.Dep_Id, department.Dep_Name,division.Div_Id,division.Div_Name,division.status FROM department LEFT JOIN division ON department.Div_Id = department.Div_Id";
                                     $result1 = mysqli_query($connection,$query1);    
                                     $row1=mysqli_fetch_assoc($result1);
                                     $DivName= $row1['Div_Name']; 
-                            
+                                    $DivStatus= $row1['status']; 
                             ?>
 
                                             <tr ID="<?php echo $DepID; ?>">
@@ -151,6 +152,7 @@
                                                 <td><?php echo  $DepName ?></td>
                                                 <td><?php echo $DivId ?></td>
                                                 <td><?php echo $DivName ?></td>
+                                                <td><?php echo $DivStatus ?></td>
                                                 <td><button type="button"id="Edit" class="btn btn-primary "><a href="DepartmentUpdate.php?GetId=<?php echo $DepID?>"class= "text-light" >Edit</a></td></button>
                                                 <td><button type="submit" class="btn btn-danger remove"> Delete</button></td>
                                             </tr>  
