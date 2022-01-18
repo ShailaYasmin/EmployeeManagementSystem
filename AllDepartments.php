@@ -3,8 +3,8 @@
   
   $user = new User;
   $connection = new mysqli("localhost","root","","test");
-  $query = "SELECT * FROM department";
-  $result = mysqli_query($connection, $query);
+  //$query = "SELECT * FROM department";
+  //$result = mysqli_query($connection, $query);
  
 ?>
 <!DOCTYPE html>
@@ -135,16 +135,19 @@
                             </thead>
                             <tbody>
                             <?php 
-                                while($row=mysqli_fetch_assoc($result))
+                            $query1="SELECT department.Dep_Id, department.Dep_Name,division.Div_Id,division.Div_Name,division.status FROM department LEFT JOIN division ON department.Div_Id = division.Div_Id";
+                            $result1 = mysqli_query($connection,$query1);    
+                            //$row1=mysqli_fetch_assoc($result1);
+                                while($row1=mysqli_fetch_assoc($result1))
                                 {
-                                    $DepID = $row['Dep_Id'];
-                                    $DepName= $row['Dep_Name']; 
-                                    $DivId= $row['Div_Id']; 
-                                    $query1="SELECT department.Dep_Id, department.Dep_Name,division.Div_Id,division.Div_Name,division.status FROM department LEFT JOIN division ON department.Div_Id = department.Div_Id";
-                                    $result1 = mysqli_query($connection,$query1);    
-                                    $row1=mysqli_fetch_assoc($result1);
+                                    
+                                    
+                                    $DepID = $row1['Dep_Id'];
+                                    $DepName= $row1['Dep_Name']; 
+                                    $DivId= $row1['Div_Id']; 
                                     $DivName= $row1['Div_Name']; 
                                     $DivStatus= $row1['status']; 
+                                    
                             ?>
 
                                             <tr ID="<?php echo $DepID; ?>">
