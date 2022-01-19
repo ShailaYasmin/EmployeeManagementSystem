@@ -165,7 +165,7 @@
                                                 <td><?php echo $Extension?></td>
                                                 <td><?php echo  $Department?></td>
                                                 <td><?php echo  $Division?></td>
-                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="update.php?GetId=<?php echo $eID ?>"class= "text-light" >Edit</a></td></button>
+                                                <td><button type="button"id="Edit" class="btn btn-primary "><a href="EventUpdate.php?GetId=<?php echo $eID ?>"class= "text-light" >Edit</a></td></button>
                                                 <td><button type="submit" class="btn btn-danger remove"> Delete</button></td>
                                             </tr>  
                                                             <?php
