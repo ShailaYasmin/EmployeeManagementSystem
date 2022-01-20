@@ -45,15 +45,24 @@
 
 			$connection = new mysqli("localhost","root","","test");
 
-			//$sql = "SELECT MAX(ID) FROM events";
-			//$data =  mysqli_query($connection, $sql);
-			
-			//$row = mysqli_fetch_array($data, MYSQLI_ASSOC);
-			//$id = $row['MAX(ID)'];
-			// echo " id is ";
-			 //echo $id ;
-			//$id = $id + 1 ;
 			$sql1 = "INSERT INTO events (NAME, EMAIL, LOCAL_IP , HOST_NAME, MAC_ADDRESS, PABX_IP, EXTENSION,DEPARTMENT,DIVISION) VALUES ('$name', '$email', '$LocalIp', '$HostName', '$MacAddress', '$PabxIp', '$Extension', '$Department', '$Division')";
+			$data1 =  mysqli_query($connection, $sql1);
+		    
+	
+			if($data1){
+				return true;
+			}else{
+			return false;
+			}
+		}
+             
+
+		public function EventUpdate($eID,$eName,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division)
+		{	//echo "Here";
+
+			$connection = new mysqli("localhost","root","","test");
+
+			$sql1 = "UPDATE `events` SET `NAME`='$eName',`EMAIL`='$email',`LOCAL_IP`='$LocalIp',`HOST_NAME`='$HostName',`MAC_ADDRESS`='$MacAddress',`PABX_IP`='$PabxIp',`EXTENSION`='$Extension',`DEPARTMENT`='$Department',`DIVISION`='$Division' WHERE ID=$eID";
 			$data1 =  mysqli_query($connection, $sql1);
 		    
 	
@@ -65,18 +74,8 @@
 		}
 
 		public function Division($Div_name, $DivStatus)
-		{	//echo "Here";
-
+          {
 			$connection = new mysqli("localhost","root","","test");
-
-			//$sql = "SELECT MAX(ID) FROM events";
-			//$data =  mysqli_query($connection, $sql);
-			
-			//$row = mysqli_fetch_array($data, MYSQLI_ASSOC);
-			//$id = $row['MAX(ID)'];
-			// echo " id is ";
-			 //echo $id ;
-			//$id = $id + 1 ;
 			$sql1 = "INSERT INTO division (Div_Name, status)VALUES ('$Div_name', '$DivStatus')";
 			$data1 =  mysqli_query($connection, $sql1);
 		    

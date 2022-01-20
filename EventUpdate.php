@@ -11,7 +11,7 @@
                                 $row=mysqli_fetch_assoc($result);
                                     
                                 $eID = $row['ID'];
-                                $eName= $row['NAME']; 
+                                $Name= $row['NAME']; 
                                 $email = $row['EMAIL'];
                                 $LocalIp = $row['LOCAL_IP'];
                                 $HostName = $row['HOST_NAME'];
@@ -20,16 +20,14 @@
                                 $Extension = $row['EXTENSION'];
                                 $Department = $row['DEPARTMENT'];
                                 $Division = $row['DIVISION']; 
-                                $Div_ID=$row['Div_Id'];
-                                $Dep_ID=$row['Dep_Id']; 
 
                                 
                                         if( isset($_POST['update']) ){
           
                                             // Get value 
                                     
-                                            $eID        = $_POST['eId'];
-                                            $eName      = $_POST['eNAME']; 
+                                            $eID        = $_POST['ID'];
+                                            $Name       = $_POST['eNAME']; 
                                             $email      = $_POST['eEMAIL'];
                                             $LocalIp    = $_POST['eLOCAL_IP'];
                                             $HostName   = $_POST['eHOST_NAME'];
@@ -38,16 +36,17 @@
                                             $Extension  = $_POST['eEXTENSION'];
                                             $Department = $_POST['eDEPARTMENT'];
                                             $Division   = $_POST['eDIVISION'];
+ 
                                 
                                             $mess1 = "Test";
                                 
-                                             if( empty($eID) || empty($eName)||empty($email) ||empty($LocalIp) ||empty($HostName) ||empty($MacAddress) ||empty($PabxIp) ||empty($Extension) ||empty($Department)||empty($Division))
+                                             if(empty($Name)||empty($email) ||empty($LocalIp) ||empty($HostName) ||empty($MacAddress) ||empty($PabxIp) ||empty($Extension) ||empty($Department)||empty($Division))
                                             
                                               {
                                                 $mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
                                               }
                                             else {
-                                                $data = $user -> EventUpdate( $eID,$eName,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division);
+                                                $data = $user -> EventUpdate($eID,$Name,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division);
                                                 //echo $data;
                                                 if(  $data  == true ){
                                                   $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
@@ -231,13 +230,13 @@
                                              <?php
                                                $query1 = "SELECT Div_Name,Div_Id FROM division";
                                                $result1 = mysqli_query($connection,$query1);
-                                               $row1=mysqli_fetch_assoc($result1);
-                                                while($row1=mysqli_fetch_assoc($data1))
+                                              
+                                                while($row1=mysqli_fetch_assoc($result1))
                                                 {
                                                     
                                                     $DivName= $row1['Div_Name']; 
                                                     $Div_ID=$row1['Div_Id'];
-                                             ?>   
+                                               ?>   
                                                 <option Value="<?php echo  $Div_ID ?>"><?php echo $DivName ?></option>
                                                 
                                                  <?php } ?>
@@ -251,15 +250,18 @@
                                            
                                             <select name="Department" class="form-control" >
                                                
-                                                <option  Value="select">----Choose One-----</option>
+                                                <option  Value="eDEPARTMENT">----Choose One-----</option>
                                                 <?php
-                                                while($row=mysqli_fetch_assoc($data2))
+                                               $query1 = "SELECT Dep_Name,Dep_Id FROM department";
+                                               $result1 = mysqli_query($connection,$query1);
+                                              
+                                                while($row1=mysqli_fetch_assoc($result1))
                                                 {
                                                     
-                                                    $DepName= $row['Dep_Name']; 
-                                                    $Dep_ID=$row['Dep_Id'];
-                                             ?>   
-                                                <option Value="<?php echo  $Dep_ID ?>"><?php echo $DepName ?></option>
+                                                    $DepName= $row1['Dep_Name']; 
+                                                    $Dep_ID=$row1['Dep_Id'];
+                                               ?>   
+                                                <option Value="<?php echo  $Dep_ID?>"><?php echo $DepName ?></option>
                                                 
                                                  <?php } ?>
                                                 </select> 
@@ -272,7 +274,7 @@
                                     </div>
                                     
                                     <!-- <button type="submit" class="btn btn-primary mt-4">Submit</button> -->
-                                    <input name="update" class="btn btn-primary mt-4" type="submit"  value="Update Information">
+                                    <input name="update" class="btn btn-primary mt-4" type="submit"  value="Update ">
                                 </form>
                             </div>
                         </div>

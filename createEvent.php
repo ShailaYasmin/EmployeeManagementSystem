@@ -175,13 +175,13 @@
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Name</b></label>
-                                            <input type="text" class="form-control" name="eName"value="<?php echo  $_SESSION["name"]; ?>">
+                                            <input type="text" class="form-control" name="eName">
                                             
                                         </div>
                                         
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
-                                            <input type="email" class="form-control" name="email"value="<?php echo   $_SESSION["email"] ; ?>">
+                                            <input type="email" class="form-control" name="email">
                                         </div>
                                     </div>
                                     <div class="row">
