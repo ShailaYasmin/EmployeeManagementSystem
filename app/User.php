@@ -57,12 +57,12 @@
 		}
              
 
-		public function EventUpdate($eID,$eName,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division)
-		{	//echo "Here";
+		public function EventUpdate($Id ,$eName,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division)
+		{	
 
 			$connection = new mysqli("localhost","root","","test");
 
-			$sql1 = "UPDATE `events` SET `NAME`='$eName',`EMAIL`='$email',`LOCAL_IP`='$LocalIp',`HOST_NAME`='$HostName',`MAC_ADDRESS`='$MacAddress',`PABX_IP`='$PabxIp',`EXTENSION`='$Extension',`DEPARTMENT`='$Department',`DIVISION`='$Division' WHERE ID=$eID";
+			$sql1 = "UPDATE `events` SET `NAME`='$eName',`EMAIL`='$email',`LOCAL_IP`='$LocalIp',`HOST_NAME`='$HostName',`MAC_ADDRESS`='$MacAddress',`PABX_IP`='$PabxIp',`EXTENSION`='$Extension',`DEPARTMENT`='$Department',`DIVISION`='$Division' WHERE ID=$Id";
 			$data1 =  mysqli_query($connection, $sql1);
 		    
 	

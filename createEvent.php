@@ -4,9 +4,9 @@
   $connection = new mysqli("localhost","root","","test");
   $sql = "SELECT * FROM events";
   $data = mysqli_query($connection, $sql);
-  $sql1="SELECT Div_Id,Div_Name FROM division";
+  $sql1="SELECT Div_Name FROM division";
   $data1= mysqli_query($connection, $sql1);
-  $sql2="SELECT Dep_Id,Dep_Name FROM department";
+  $sql2="SELECT Dep_Name FROM department";
   $data2= mysqli_query($connection, $sql2);
    
   ?>
@@ -219,9 +219,9 @@
                                                 {
                                                     
                                                     $DivName= $row['Div_Name']; 
-                                                    $Div_ID=$row['Div_Id'];
+                                                    // $Div_ID=$row['Div_Id'];
                                              ?>   
-                                                <option Value="<?php echo  $Div_ID ?>"><?php echo $DivName ?></option>
+                                                <option ><?php echo $DivName ?></option>
                                                 
                                                  <?php } ?>
                                                  </select> 
@@ -240,9 +240,9 @@
                                                 {
                                                     
                                                     $DepName= $row['Dep_Name']; 
-                                                    $Dep_ID=$row['Dep_Id'];
+                                                    
                                              ?>   
-                                                <option Value="<?php echo  $Dep_ID ?>"><?php echo $DepName ?></option>
+                                                <option><?php echo $DepName ?></option>
                                                 
                                                  <?php } ?>
                                                 </select> 

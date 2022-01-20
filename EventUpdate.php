@@ -3,14 +3,14 @@
 <?php  
                                 $user = new User;
                                 $connection = new mysqli("localhost","root","","test");
-                                $eID = isset($_GET['GetId']) ? $_GET['GetId'] : '';
+                                $Id  = isset($_GET['GetId']) ? $_GET['GetId'] : '';
 
 
-                                $query = "SELECT * FROM events where ID='". $eID."'";
+                                $query = "SELECT * FROM events where ID='". $Id ."'";
                                 $result = mysqli_query($connection,$query);
                                 $row=mysqli_fetch_assoc($result);
                                     
-                                $eID = $row['ID'];
+                                $Id = $row['ID'];
                                 $Name= $row['NAME']; 
                                 $email = $row['EMAIL'];
                                 $LocalIp = $row['LOCAL_IP'];
@@ -26,7 +26,7 @@
           
                                             // Get value 
                                     
-                                            $eID        = $_POST['ID'];
+                                            $Id         = $_POST['eID '];
                                             $Name       = $_POST['eNAME']; 
                                             $email      = $_POST['eEMAIL'];
                                             $LocalIp    = $_POST['eLOCAL_IP'];
@@ -46,8 +46,8 @@
                                                 $mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
                                               }
                                             else {
-                                                $data = $user -> EventUpdate($eID,$Name,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division);
-                                                //echo $data;
+                                                $data = $user -> EventUpdate($Id ,$Name,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division);
+                                               
                                                 if(  $data  == true ){
                                                   $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
                                                 }
@@ -182,42 +182,42 @@
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <div class="form-group">
                                             <!-- <label>Product ID</label> -->
-                                            <input type="hidden" class="form-control" id="eID" placeholder="Enter Employee Name" name="eID"value="<?php echo $eID; ?>" >
+                                            <input type="hidden" class="form-control" id="eID" placeholder="Enter Employee Name" name="eID"value="<?php echo $Id ; ?>" >
 </div>
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Name</b></label>
-                                            <input type="text" class="form-control" name="eName"value="<?php echo $eNAME; ?>">
+                                            <input type="text" class="form-control" name="eName"value="<?php echo $Name; ?>">
                                             
                                         </div>
                                         
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
-                                            <input type="email" class="form-control" name="email"value="<?php echo  $eEMAIL ; ?>">
+                                            <input type="email" class="form-control" name="email"value="<?php echo   $email; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>LocalIp</b></label>
-                                            <input type="text" class="form-control" name="LocalIp"value="<?php echo  $eLOCAL_IP ; ?>">
+                                            <input type="text" class="form-control" name="LocalIp"value="<?php echo   $LocalIp; ?>">
                                         </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b> HostName</b></label>
-                                            <input type="text" class="form-control" name="HostName"value="<?php echo  $eHOST_NAME ; ?>">
+                                            <input type="text" class="form-control" name="HostName"value="<?php echo  $HostName; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>MacAddress</b></label>
-                                            <input type="text" class="form-control" name="MacAddress"value="<?php echo  $eMAC_ADDRESS ; ?>">
+                                            <input type="text" class="form-control" name="MacAddress"value="<?php echo  $MacAddress ; ?>">
                                         </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>PabxIp</b></label>
-                                            <input type="text" class="form-control" name="PabxIp"value="<?php echo  $ePABX_IP ; ?>">
+                                            <input type="text" class="form-control" name="PabxIp"value="<?php echo  $PabxIp ; ?>">
                                         </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Extension</b></label>
-                                            <input type="text" class="form-control" name="Extension"value="<?php echo  $eEXTENSION ; ?>">
+                                            <input type="text" class="form-control" name="Extension"value="<?php echo  $Extension ; ?>">
                                         </div>
                                         <div class="col">
                                         <div class="col">
@@ -225,19 +225,19 @@
                                             
                                         </div>
                                             <select name="Division" class="form-control" > -->
-                                             <option  Value="eDIVISION">----Choose One-----</option>
+                                             <option  Value="<?php echo  $Division; ?>">----Choose One-----</option>
                                               
                                              <?php
-                                               $query1 = "SELECT Div_Name,Div_Id FROM division";
+                                               $query1 = "SELECT Div_Name FROM division";
                                                $result1 = mysqli_query($connection,$query1);
                                               
                                                 while($row1=mysqli_fetch_assoc($result1))
                                                 {
                                                     
                                                     $DivName= $row1['Div_Name']; 
-                                                    $Div_ID=$row1['Div_Id'];
+                                                    
                                                ?>   
-                                                <option Value="<?php echo  $Div_ID ?>"><?php echo $DivName ?></option>
+                                                <option ><?php echo $DivName ?></option>
                                                 
                                                  <?php } ?>
                                                  </select> 
@@ -250,28 +250,25 @@
                                            
                                             <select name="Department" class="form-control" >
                                                
-                                                <option  Value="eDEPARTMENT">----Choose One-----</option>
+                                                <option  Value="<?php echo $Department ; ?>">----Choose One-----</option>
                                                 <?php
-                                               $query1 = "SELECT Dep_Name,Dep_Id FROM department";
+                                               $query1 = "SELECT Dep_Name FROM department";
                                                $result1 = mysqli_query($connection,$query1);
                                               
                                                 while($row1=mysqli_fetch_assoc($result1))
                                                 {
                                                     
                                                     $DepName= $row1['Dep_Name']; 
-                                                    $Dep_ID=$row1['Dep_Id'];
+                                               
                                                ?>   
-                                                <option Value="<?php echo  $Dep_ID?>"><?php echo $DepName ?></option>
+                                                <option ><?php echo $DepName ?></option>
                                                 
                                                  <?php } ?>
                                                 </select> 
                                         </div>
                                         
                                     </div>
-                                    <div class="row">
 
-                                  
-                                    </div>
                                     
                                     <!-- <button type="submit" class="btn btn-primary mt-4">Submit</button> -->
                                     <input name="update" class="btn btn-primary mt-4" type="submit"  value="Update ">
