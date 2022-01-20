@@ -118,15 +118,16 @@
                                 All User
                             </a>
                           
+                            <a class="nav-link" href="./createEvent.php"?>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Create Event
+                            </a>
                             <div class="sb-sidenav-menu-heading">Events</div>
                             <a class="nav-link" href="./allEvents.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 All Events
                             </a>
-                            <a class="nav-link" href="./createEvent.php"?>
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Create Event
-                            </a>
+                            
                             <a class="nav-link" href="./Division.php"?>
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Division

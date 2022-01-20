@@ -1,5 +1,4 @@
 <?php  include_once "app/autoload.php"; ?>    
-
 <?php  
                                 $user = new User;
                                 $connection = new mysqli("localhost","root","","test");
@@ -10,7 +9,7 @@
                                 $result = mysqli_query($connection,$query);
                                 $row=mysqli_fetch_assoc($result);
                                     
-                                $Id = $row['ID'];
+                                
                                 $Name= $row['NAME']; 
                                 $email = $row['EMAIL'];
                                 $LocalIp = $row['LOCAL_IP'];
@@ -19,14 +18,16 @@
                                 $PabxIp = $row['PABX_IP'];
                                 $Extension = $row['EXTENSION'];
                                 $Department = $row['DEPARTMENT'];
-                                $Division = $row['DIVISION']; 
+                                $Division = $row['DIVISION'];
+                                 
 
                                 
                                         if( isset($_POST['update']) ){
           
                                             // Get value 
+
                                     
-                                            $Id         = $_POST['eID '];
+                                            $eID        = $_POST['eID'];
                                             $Name       = $_POST['eNAME']; 
                                             $email      = $_POST['eEMAIL'];
                                             $LocalIp    = $_POST['eLOCAL_IP'];
@@ -36,6 +37,8 @@
                                             $Extension  = $_POST['eEXTENSION'];
                                             $Department = $_POST['eDEPARTMENT'];
                                             $Division   = $_POST['eDIVISION'];
+                                           
+
  
                                 
                                             $mess1 = "Test";
@@ -46,14 +49,15 @@
                                                 $mess1 = "<p style='color:red;text-align:center; font-size:14px; font-weight:normal;'>All fields are required !</p>";
                                               }
                                             else {
-                                                $data = $user -> EventUpdate($Id ,$Name,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division);
+                                                $data = $user -> EventUpdate($eID ,$Name,$email,$LocalIp,$HostName,$MacAddress,$PabxIp,$Extension,$Department,$Division);
                                                
                                                 if(  $data  == true ){
                                                   $mess1 = "<p style='color:green;text-align:center; font-size:14px; font-weight:normal;'> Create successfull </p>";
+                                                  echo $mess1;
                                                 }
                                                 else{
                                                   
-                                                    echo $data;
+                                                    echo "Sorry";
                                                 }
                                                 
                                            }
@@ -119,20 +123,21 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            
+                            <div class="sb-sidenav-menu-heading">Events</div>
                             <a class="nav-link" href="./allUser.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
                                 All User
                             </a>
                           
+
+                            <a class="nav-link" href="./createEvent.php"?>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Create Event
+                            </a>
                             <div class="sb-sidenav-menu-heading">Events</div>
                             <a class="nav-link" href="./allEvents.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 All Events
-                            </a>
-                            <a class="nav-link" href="./createEvent.php"?>
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Create Event
                             </a>
                             <a class="nav-link" href="./Division.php"?>
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -177,54 +182,55 @@
                                 <i class="fas fa-table me-1"></i>
                                 Event
                             </div>
+                        
                            
                             <div class="card-body">
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <div class="form-group">
                                             <!-- <label>Product ID</label> -->
-                                            <input type="hidden" class="form-control" id="eID" placeholder="Enter Employee Name" name="eID"value="<?php echo $Id ; ?>" >
-</div>
+                                            <input type="hidden" class="form-control" id="eID" placeholder="Enter Division Name" name="eID" value="<?php echo  $Id; ?>" >
+                                        </div>
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Name</b></label>
-                                            <input type="text" class="form-control" name="eName"value="<?php echo $Name; ?>">
+                                            <input type="text" class="form-control" name="eNAME" value="<?php echo $Name; ?>">
                                             
                                         </div>
                                         
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Email</b></label>
-                                            <input type="email" class="form-control" name="email"value="<?php echo   $email; ?>">
+                                            <input type="email" class="form-control" name="eEMAIL"value="<?php echo   $email; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>LocalIp</b></label>
-                                            <input type="text" class="form-control" name="LocalIp"value="<?php echo   $LocalIp; ?>">
+                                            <input type="text" class="form-control" name="eLOCAL_IP"value="<?php echo   $LocalIp; ?>">
                                         </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b> HostName</b></label>
-                                            <input type="text" class="form-control" name="HostName"value="<?php echo  $HostName; ?>">
+                                            <input type="text" class="form-control" name="eHOST_NAME"value="<?php echo  $HostName; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>MacAddress</b></label>
-                                            <input type="text" class="form-control" name="MacAddress"value="<?php echo  $MacAddress ; ?>">
+                                            <input type="text" class="form-control" name="eMAC_ADDRESS"value="<?php echo  $MacAddress ; ?>">
                                         </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>PabxIp</b></label>
-                                            <input type="text" class="form-control" name="PabxIp"value="<?php echo  $PabxIp ; ?>">
+                                            <input type="text" class="form-control" name="ePABX_IP"value="<?php echo  $PabxIp ; ?>">
                                         </div>
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Extension</b></label>
-                                            <input type="text" class="form-control" name="Extension"value="<?php echo  $Extension ; ?>">
+                                            <input type="text" class="form-control" name="eEXTENSION"value="<?php echo  $Extension ; ?>">
                                         </div>
                                         <div class="col">
                                         <div class="col">
                                             <label for="exampleInputEmail1" class="form-label"><b>Division</b></label>
                                             
                                         </div>
-                                            <select name="Division" class="form-control" > -->
+                                            <select name="eDEPARTMENT" class="form-control" > -->
                                              <option  Value="<?php echo  $Division; ?>">----Choose One-----</option>
                                               
                                              <?php
@@ -248,7 +254,7 @@
                                             
                                             <label for="exampleInputEmail1" class="form-label"><b>Department</b></label>
                                            
-                                            <select name="Department" class="form-control" >
+                                            <select name="eDIVISION" class="form-control" >
                                                
                                                 <option  Value="<?php echo $Department ; ?>">----Choose One-----</option>
                                                 <?php
@@ -271,7 +277,7 @@
 
                                     
                                     <!-- <button type="submit" class="btn btn-primary mt-4">Submit</button> -->
-                                    <input name="update" class="btn btn-primary mt-4" type="submit"  value="Update ">
+                                    <input name="update" id="update" class="btn btn-primary mt-4" type="submit"  value="Update ">
                                 </form>
                             </div>
                         </div>

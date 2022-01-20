@@ -67,15 +67,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-ninja"></i></i></div>
                                 All User
                             </a>
-                           
                             <div class="sb-sidenav-menu-heading">Events</div>
-                            <a class="nav-link" href="./allEvents.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                All Events
-                            </a>
                             <a class="nav-link" href="./createEvent.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Create Event
+                            </a>
+                            
+                            <a class="nav-link" href="./allEvents.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                All Events
                             </a>
                             <a class="nav-link" href="./Division.php"?>
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -108,15 +108,14 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Showing All Events</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Employee  Info</li>
+                            <li class="breadcrumb-item active">Employee Management System</li>
                         </ol>
                         
                         
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Employee Info
-                            </div>
+                                All Events list
                             <div class="card-body">
                             <table class="table caption-top table-bordered">
 
