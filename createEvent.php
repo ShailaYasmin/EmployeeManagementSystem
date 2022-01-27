@@ -4,9 +4,9 @@
   $connection = new mysqli("localhost","root","","test");
   $sql = "SELECT * FROM events";
   $data = mysqli_query($connection, $sql);
-  $sql1="SELECT Div_Name FROM division";
+  $sql1="SELECT Div_Name, Div_Id FROM division";
   $data1= mysqli_query($connection, $sql1);
-  $sql2="SELECT Dep_Name FROM department";
+  $sql2="SELECT Dep_Id,Dep_Name FROM department";
   $data2= mysqli_query($connection, $sql2);
    
   ?>
@@ -25,6 +25,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body class="sb-nav-fixed">
 
@@ -213,16 +214,16 @@
                                             <label for="exampleInputEmail1" class="form-label"><b>Division</b></label>
                                             
                                         </div>
-                                            <select name="Division" class="form-control" > -->
+                                            <select name="Division" class="form-control"id="Div" > -->
                                              <option  Value="select">----Choose One-----</option>
                                              <?php
                                                 while($row=mysqli_fetch_assoc($data1))
                                                 {
                                                     
                                                     $DivName= $row['Div_Name']; 
-                                                    // $Div_ID=$row['Div_Id'];
+                                                    $Div_ID=$row['Div_Id'];
                                              ?>   
-                                                <option ><?php echo $DivName ?></option>
+                                                <option Value="<?php echo  $Div_ID ?>"><?php echo $DivName ?></option>
                                                 
                                                  <?php } ?>
                                                  </select> 
@@ -233,7 +234,7 @@
                                             
                                             <label for="exampleInputEmail1" class="form-label"><b>Department</b></label>
                                            
-                                            <select name="Department" class="form-control" >
+                                            <select name="Department" class="form-control"id="Dep" >
                                                
                                                 <option  Value="select">----Choose One-----</option>
                                                 <?php
@@ -241,9 +242,9 @@
                                                 {
                                                     
                                                     $DepName= $row['Dep_Name']; 
-                                                    
+                                                    $Dep_ID=$row['Dep_Id'];
                                              ?>   
-                                                <option><?php echo $DepName ?></option>
+                                                <option Value="<?php echo  $Dep_ID ?>"><?php echo $DepName ?></option>
                                                 
                                                  <?php } ?>
                                                 </select> 
@@ -262,7 +263,24 @@
                         </div>
                     </div>
                 </main>
-                
+                <script type="text/javascript">
+  $(document).ready(function(){
+    // department dependent ajax
+    $("#Div").on("change",function(){
+      var Div_Id = $(this).val();
+      $.ajax({
+        url :"action.php",
+        type:"POST",
+        cache:false,
+        data:{Div_Id:Div_Id},
+        success:function(data){
+          $("#Dep").html(data);
+         
+        }
+      });
+    });
+});
+    </script>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
