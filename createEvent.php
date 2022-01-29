@@ -236,17 +236,6 @@
                                            
                                             <select name="Department" class="form-control"id="Dep" >
                                                
-                                                <option  Value="select">----Choose One-----</option>
-                                                <?php
-                                                while($row=mysqli_fetch_assoc($data2))
-                                                {
-                                                    
-                                                    $DepName= $row['Dep_Name']; 
-                                                    $Dep_ID=$row['Dep_Id'];
-                                             ?>   
-                                                <option Value="<?php echo  $Dep_ID ?>"><?php echo $DepName ?></option>
-                                                
-                                                 <?php } ?>
                                                 </select> 
                                         </div>
                                         
@@ -267,14 +256,15 @@
   $(document).ready(function(){
     // department dependent ajax
     $("#Div").on("change",function(){
-      var Div_Id = $(this).val();
+      var Div_Id = $(this).val(); 
+      console.log(Div_Id)
       $.ajax({
         url :"action.php",
         type:"POST",
         cache:false,
         data:{Div_Id:Div_Id},
-        success:function(data){
-          $("#Dep").html(data);
+        success:function(result){
+          $("#Dep").html(result);
          
         }
       });
