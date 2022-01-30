@@ -1,12 +1,12 @@
 <?php
 // Include the database connection file
-$user = new User;
+
 $connection = new mysqli("localhost","root","","test");
  
-$Div_Id = $_POST["Div_Id"]; 
+$Div_ID = $_POST["Div_Id"]; 
  
  // Fetch state name base on country id
- $query = "SELECT Dep_Id,Dep_Name FROM department WHERE Div_Id = $Div_Id";
+ $query = "SELECT Dep_Id,Dep_Name FROM department WHERE Div_Id = '".$Div_ID."' ";
  $result = $connection->query($query);
  ?>
  <option value="">Select Department</option>

@@ -26,6 +26,7 @@
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body class="sb-nav-fixed">
 
@@ -214,7 +215,7 @@
                                             <label for="exampleInputEmail1" class="form-label"><b>Division</b></label>
                                             
                                         </div>
-                                            <select name="Division" class="form-control"id="Div" > -->
+                                            <select name="Division" class="form-control"id="Division" > -->
                                              <option  Value="select">----Choose One-----</option>
                                              <?php
                                                 while($row=mysqli_fetch_assoc($data1))
@@ -234,9 +235,20 @@
                                             
                                             <label for="exampleInputEmail1" class="form-label"><b>Department</b></label>
                                            
-                                            <select name="Department" class="form-control"id="Dep" >
-                                               
+                                            <select name="Department" class="form-control"id="Department" >
+                                            <option  Value="select">----Choose One-----</option>
+                                             <?php
+                                                while($row=mysqli_fetch_assoc($data2))
+                                                {
+                                                    
+                                                    $DepName= $row['Dep_Name']; 
+                                                    $Dep_ID=$row['Dep_Id'];
+                                             ?>   
+                                                <option Value="<?php echo  $Dep_ID ?>"><?php echo $DepName ?></option>
+                                                
+                                                 <?php } ?>
                                                 </select> 
+
                                         </div>
                                         
                                     </div>
@@ -253,24 +265,31 @@
                     </div>
                 </main>
                 <script type="text/javascript">
-  $(document).ready(function(){
-    // department dependent ajax
-    $("#Div").on("change",function(){
-      var Div_Id = $(this).val(); 
-      console.log(Div_Id)
-      $.ajax({
-        url :"action.php",
-        type:"POST",
-        cache:false,
-        data:{Div_Id:Div_Id},
-        success:function(result){
-          $("#Dep").html(result);
-         
-        }
-      });
-    });
-});
-    </script>
+                                                $(document).ready(function(){
+                                                    // department dependent ajax
+                                                    $("#Division").on("change",function(){
+                                                    var Div_Id = $(this).val(); 
+                                                    console.log(Div_Id);
+                                                    if(Division){
+                                                    $.ajax({
+                                                        url :"action.php",
+                                                        type:"POST",
+                                                        cache:false,
+                                                        data:{Div_Id:Div_Id},
+                                                        success:function(data)
+                                                        {
+                                                        $("#Department").html(data);
+
+                                                        }
+                                                    });
+                                                    }
+                                                    else
+                                                        {
+                                                            $('#Department').html('<option value="">-- All --</option>'); 
+                                                        }
+                                                    });
+                                                });
+                                             </script>  
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
